@@ -14,6 +14,12 @@ call pathogen#infect('~/.vim_runtime/sources_others/{}')
 call pathogen#helptags()
 
 """"""""""""""""""""""""""""""
+" => SuperTab plugin
+""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+filetype plugin on
+
+""""""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
 let g:bufExplorerDefaultHelp=0
@@ -81,9 +87,9 @@ let g:NERDTreeWinPos = "right"
 let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
-map <leader>] :NERDTreeToggle<cr>
+map <leader>]] :NERDTreeToggle<cr>
 map <leader>][ :NERDTreeFromBookmark 
-map <leader>[ :NERDTreeFind<cr>
+map <leader>[[ :NERDTreeFind<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,15 +142,6 @@ let g:syntastic_php_checkers = ['php -l']
 " Go
 let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 
-" Custom CoffeeScript SyntasticCheck
-func! SyntasticCheckCoffeescript()
-    let l:filename = substitute(expand("%:p"), '\(\w\+\)\.coffee', '.coffee.\1.js', '')
-    execute "tabedit " . l:filename
-    execute "SyntasticCheck"
-    execute "Errors"
-endfunc
-nnoremap <silent> <leader>l :call SyntasticCheckCoffeescript()<cr>
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -154,7 +151,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:netrw_liststyle=3
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter (Git diff)
